@@ -1,5 +1,13 @@
+import os
+from dotenv import load_dotenv
 from googleapiclient.discovery import build
-API_KEY = 'AIzaSyBNeKHZ1pCylcWDHSurWugdQGm5uiwWon8'
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+
+if not API_KEY:
+    raise ValueError("API_KEY não encontrada. Verifique o arquivo .env.")
+
 
 youtube = build('youtube','v3', developerKey=API_KEY)
 
